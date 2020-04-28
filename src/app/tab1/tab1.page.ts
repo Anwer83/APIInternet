@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RestapiService } from '../restapi.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+   list:any=[];
+  constructor(private service:RestapiService) {}
+ngOnInit(){
 
+  this.service.getuser().subscribe(data=>{
+    this.list=data["results"];
+  })
+}
 }
